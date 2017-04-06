@@ -1,0 +1,23 @@
+{
+  "name": "wsvideo",
+  "description": "html5 video with websocket",
+  "main": "built.js",
+  "authors": [
+    "hacknlove"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "html5;",
+    "video;",
+    "streaming;",
+    "websocket"
+  ],
+  "homepage": "https://github.com/hacknlove/wsvideo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

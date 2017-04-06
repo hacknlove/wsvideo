@@ -1,0 +1,33 @@
+{
+  "name": "wsvideo",
+  "version": "1.0.0",
+  "description": "html5 video with websocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hacknlove/wsvideo.git"
+  },
+  "keywords": [
+    "html5;",
+    "video;",
+    "streaming;",
+    "websocket"
+  ],
+  "scripts": {
+    "start": "browserify source.js > built.js"
+  },
+  "author": "hacknlove",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hacknlove/wsvideo/issues"
+  },
+  "homepage": "https://github.com/hacknlove/wsvideo#readme",
+  "devDependencies": {
+    "blob-to-buffer": "^1.2.6",
+    "browserify": "^14.3.0",
+    "videostream": "^2.4.2"
+  }
+}
