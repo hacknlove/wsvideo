@@ -1,6 +1,10 @@
 # wsvideo
 websocket streaming html5 video
 
+`npm install --save wsvideo`
+
+`bower install --save wsvideeo`
+
 ## Howto client-side
 ```
 var video = document.querySelector('video')
