@@ -3,7 +3,7 @@ websocket streaming html5 video
 
 `npm install --save wsvideo`
 
-`bower install --save wsvideeo`
+`bower install --save wsvideo`
 
 ## Howto client-side
 ```
