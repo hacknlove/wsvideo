@@ -11,12 +11,18 @@ var WsFile = function (path) {
   self.path = path
 }
 
+WsFile.prototype.destroy(function () {
+  this.rs.emit('close')
+  this.rs.emit('end')
+})
+
 WsFile.prototype.createReadStream = function (opts) {
   var self = this
   var socket
   opts = opts || {}
   opts.start = opts.start || 0
   var rs = new EventEmitter()
+  self.rs = rs
   rs.pipe = function (writable) {
     socket = new WebSocket(self.path + '?start=' + opts.start)
     socket.addEventListener('open', function () {
@@ -50,9 +56,9 @@ WsFile.prototype.createReadStream = function (opts) {
 }
 
 var wsvideo = function (path, element) {
-  var stream = new WsFile(path)
-  videostream(stream, element)
-  return stream
+  var rs = new WsFile(path)
+  videostream(rs, element)
+  return rs
 }
 
 window.wsvideo = wsvideo
