@@ -1,6 +1,6 @@
 {
   "name": "wsvideo",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "html5 video with websocket",
   "main": "index.js",
   "scripts": {

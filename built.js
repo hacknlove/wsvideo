@@ -7828,17 +7828,11 @@ function wrappy (fn, cb) {
 
 const EventEmitter = require('events')
 var blobToBuffer = require('blob-to-buffer')
-var videostream = require('videostream')
+var Videostream = require('videostream')
 
 var WsFile = function (path) {
   var self = this
   self.path = path
-}
-
-WsFile.prototype.destroy = function () {
-  this.socket && this.socket.send('wait')
-  this.socket && this.socket.close()
-  this.writable && this.writable.end()
 }
 
 WsFile.prototype.createReadStream = function (opts) {
@@ -7848,9 +7842,7 @@ WsFile.prototype.createReadStream = function (opts) {
   opts.start = opts.start || 0
   var rs = new EventEmitter()
   rs.pipe = function (writable) {
-    self.writable = writable
     socket = new WebSocket(self.path + '?start=' + opts.start)
-    self.socket = socket
     socket.addEventListener('open', function () {
       socket.addEventListener('message', function (data) {
         blobToBuffer(data.data, function (err, buffer) {
@@ -7882,9 +7874,7 @@ WsFile.prototype.createReadStream = function (opts) {
 }
 
 var wsvideo = function (path, element) {
-  var rs = new WsFile(path)
-  videostream(rs, element)
-  return rs
+  return new Videostream(new WsFile(path), element)
 }
 
 window.wsvideo = wsvideo
