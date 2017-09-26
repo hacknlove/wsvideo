@@ -7835,10 +7835,10 @@ var WsFile = function (path) {
   self.path = path
 }
 
-WsFile.prototype.destroy(function () {
+WsFile.prototype.destroy = function () {
   this.rs.emit('close')
   this.rs.emit('end')
-})
+}
 
 WsFile.prototype.createReadStream = function (opts) {
   var self = this
