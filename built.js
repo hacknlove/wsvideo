@@ -7874,7 +7874,9 @@ WsFile.prototype.createReadStream = function (opts) {
 }
 
 var wsvideo = function (path, element) {
-  videostream(new WsFile(path), element)
+  var stream = new WsFile(path)
+  videostream(stream, element)
+  return stream
 }
 
 window.wsvideo = wsvideo
