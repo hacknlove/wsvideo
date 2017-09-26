@@ -7836,6 +7836,8 @@ var WsFile = function (path) {
 }
 
 WsFile.prototype.destroy = function () {
+  this.socket && this.socket.send('wait')
+  this.socket && this.socket.close()
   this.writable && this.writable.end()
 }
 
@@ -7848,6 +7850,7 @@ WsFile.prototype.createReadStream = function (opts) {
   rs.pipe = function (writable) {
     self.writable = writable
     socket = new WebSocket(self.path + '?start=' + opts.start)
+    self.socket = socket
     socket.addEventListener('open', function () {
       socket.addEventListener('message', function (data) {
         blobToBuffer(data.data, function (err, buffer) {
