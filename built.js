@@ -7836,8 +7836,7 @@ var WsFile = function (path) {
 }
 
 WsFile.prototype.destroy = function () {
-  this.rs.emit('close')
-  this.rs.emit('end')
+  this.writable && this.writable.end()
 }
 
 WsFile.prototype.createReadStream = function (opts) {
@@ -7846,8 +7845,8 @@ WsFile.prototype.createReadStream = function (opts) {
   opts = opts || {}
   opts.start = opts.start || 0
   var rs = new EventEmitter()
-  self.rs = rs
   rs.pipe = function (writable) {
+    self.writable = writable
     socket = new WebSocket(self.path + '?start=' + opts.start)
     socket.addEventListener('open', function () {
       socket.addEventListener('message', function (data) {
